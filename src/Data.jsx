@@ -1,3 +1,5 @@
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+
 const Data = ({ data }) => {
     const today     = new Date();
     const temp      = (data.main.temp / 10).toFixed(1);

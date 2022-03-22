@@ -10,7 +10,7 @@ const Content = () => {
     const {data, loading, error}    = useFetch(`https://api.openweathermap.org/data/2.5/weather?q=${value},{state code}&appid=${apiKey}`);
 
     return(
-        <div className="h-full overflow-x-hidden">
+        <div className="h-full">
             <div className="w-screen h-screen bg-slate-800 flex flex-col justify-center items-center">
                 <h1 className="font-bold text-8xl text-slate-400 text-center">Lihat Cuaca</h1>
                 <h3 className="font-semibold text-2xl text-slate-500 mt-4 text-center">Get a Weather Information With Lihat Cuaca.</h3>

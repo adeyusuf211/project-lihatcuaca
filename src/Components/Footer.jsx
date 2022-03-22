@@ -8,6 +8,7 @@ const Footer = () => {
                     <div className="flex flex-col">
                         <h1 className="font-bold text-2xl text-slate-400 mb-2">RESOURCES</h1>
                         <h3 className="font-semibold lg:text-2xl text-slate-500"><a href="https://www.openweathermap.org" target="_blank">OpenWeatherMap</a></h3>
+                        <h3 className="font-semibold lg:text-2xl text-slate-500"><a href="https://www.leaftletjs.com" target="_blank">Leaftlet</a></h3>
                     </div>
                     <div className="flex flex-col">
                         <h1 className="font-bold text-2xl text-slate-400 mb-2">&copy; 2022.</h1>

@@ -11,7 +11,7 @@ const useFetch = (url) => {
         fetch(url, {signal: abortCont.signal})
             .then(res => {
                 if(!res.ok) {
-                    throw Error('Could not loading the data from resource or input value is wrong...');
+                    throw Error('insert a valid city');
                 }
                 return res.json();
             })
