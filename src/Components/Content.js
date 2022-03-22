@@ -1,28 +1,13 @@
-import { useEffect, useState } from "react";
-
+import { useState } from "react";
 import Data from "../Data";
+import Footer from "./Footer";
+import useFetch from "./useFetch";
 
 const Content = () => {
-    const [data, setData] = useState(null);
+    const apiKey                    = '9f0afe1eafb8b0286ee1a59305c569a6';
+    const [value, setValue]         = useState(null);
 
-    const apiKey   = '9f0afe1eafb8b0286ee1a59305c569a6';
-    
-    const searchCity = (event) => {
-        const inputValue = event.target.value;
-
-        const endPoint  = `https://api.openweathermap.org/data/2.5/weather?q=${inputValue},'zip code'&appid=${apiKey}`;
-    
-        fetch(endPoint)
-            .then(res => res.json())
-            .then(weather => {
-                console.log(weather);
-                if(inputValue !== weather.main.name) {
-                    console.log('Gagal');
-                } 
-                setData(weather);
-            });
-    }
-
+    const {data, loading, error}    = useFetch(`https://api.openweathermap.org/data/2.5/weather?q=${value},{state code}&appid=${apiKey}`);
 
     return(
         <div className="h-full overflow-x-hidden">
@@ -32,25 +17,25 @@ const Content = () => {
             </div>
             <div className="bg-slate-900 lg:px-[100px] py-20 px-[20px]">
                 <div className="w-full bg-slate-700">
-                    <input type="text" placeholder="search city..." className="w-full border-none px-2 py-3 outline-none bg-white rounded-md" onInput={searchCity} />
+                    <input type="text" placeholder="search city..." className="w-full border-none px-2 py-3 outline-none bg-white rounded-md" onInput={(e) => {
+                        setValue(e.target.value);
+                    }} value={value} />
                 </div>
+                {
+                    error && 
+                    <div className="w-full my-2">
+                        <h1 className="font-semibold text-slate-500 text-2xl">{error}</h1>
+                    </div>
+                }
+                {
+                    loading && 
+                    <div className="w-full">
+                        <h1 className="text-slate-400 text-2xl font-semibold">Loading...</h1>
+                    </div>
+                }
                 {data && <Data data={data} />}
             </div>
-            <div className="bg-slate-800 px-[100px] py-10">
-                <div className="grid lg:grid-cols-3 gap-5 sm:gap-2">
-                    <div className="flex flex-col mt-0">
-                        <h1 className="font-bold text-slate-400 text-6xl mb-2">Lihat Cuaca</h1>
-                    </div>
-                    <div className="flex flex-col">
-                        <h1 className="font-bold text-2xl text-slate-400 mb-2">RESOURCES</h1>
-                        <h3 className="font-semibold lg:text-2xl text-slate-500"><a href="https://www.openweathermap.org" target="_blank">OpenWeatherMap</a></h3>
-                    </div>
-                    <div className="flex flex-col">
-                        <h1 className="font-bold text-2xl text-slate-400 mb-2">&copy; 2022.</h1>
-                        <h3 className="font-semibold lg:text-2xl text-slate-500">This site created by <a href="https://adeyusuf.netlify.app" className="text-slate-400" target="_blank">Ade Yusuf</a></h3>
-                    </div>
-                </div>
-            </div>
+            <Footer />
         </div>
     );
 }
