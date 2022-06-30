@@ -16,10 +16,11 @@ const Content = () => {
                 <h3 className="font-semibold text-2xl text-slate-500 mt-4 text-center">Get a Weather Information With Lihat Cuaca.</h3>
             </div>
             <div className="bg-slate-900 lg:px-[100px] py-20 px-[20px]">
-                <div className="w-full bg-slate-700">
-                    <input type="text" placeholder="search city..." className="w-full border-none px-2 py-3 outline-none bg-white rounded-md" onInput={(e) => {
+                <div className="w-full bg-slate-700 px-2 flex items-center rounded-lg">
+                    <input type="text" placeholder="search city..." className="w-full border-none px-2 py-3 outline-none bg-slate-700 text-slate-300 rounded-md" onInput={(e) => {
                         setValue(e.target.value);
                     }} value={value} />
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" className="fill-slate-400"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
                 </div>
                 {
                     error && 

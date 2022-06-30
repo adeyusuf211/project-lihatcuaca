@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 
 const Data = ({ data }) => {
     const today     = new Date();
@@ -6,6 +6,8 @@ const Data = ({ data }) => {
     const tempMin   = (data.main.temp_min / 10).toFixed(1);
     const tempMax   = (data.main.temp_max / 10).toFixed(1);
     const flsLike   = (data.main.feels_like / 10).toFixed(1);
+    const position  = [data.coord.lat, data.coord.lon];
+
     return (
             <div className="py-10 h-full" key={data.id}>
                 {data.weather.map(item => (
@@ -32,8 +34,22 @@ const Data = ({ data }) => {
                         </div>
                     </div>
                 ))}
+                <div className="mt-5 h-full w-full">
+                    <MapContainer center={position} zoom={13}>
+                        <TileLayer
+                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        />
+                        <Marker position={position}>
+                            <Popup>
+                            A pretty CSS3 popup. <br /> Easily customizable.
+                            </Popup>
+                        </Marker>
+                    </MapContainer>
+                </div>
             </div>
     )
+
 }
 
 export default Data;
